@@ -23,7 +23,8 @@ from sklearn.cluster import KMeans
 warnings.filterwarnings("ignore")
 sns.set_theme(style="whitegrid", palette="muted", font_scale=1.1)
 
-CHARTS_DIR = "output_charts"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CHARTS_DIR = os.path.join(SCRIPT_DIR, "output_charts")
 os.makedirs(CHARTS_DIR, exist_ok=True)
 
 
@@ -35,8 +36,9 @@ print("PART A - DATA PREPARATION")
 print("=" * 60)
 
 # load both csv files
-sentiment_df = pd.read_csv("fear_greed_index.csv")
-trades_df = pd.read_csv("historical_data.csv")
+# load both csv files
+sentiment_df = pd.read_csv(os.path.join(SCRIPT_DIR, "fear_greed_index.csv"))
+trades_df = pd.read_csv(os.path.join(SCRIPT_DIR, "historical_data.csv"))
 
 # quick look at what we're working with
 print(f"\nFear/Greed dataset: {sentiment_df.shape[0]:,} rows, {sentiment_df.shape[1]} cols")

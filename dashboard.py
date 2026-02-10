@@ -10,6 +10,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 import os
 
+# Get the directory where this script is located
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 st.set_page_config(page_title="Trader vs Sentiment", layout="wide", page_icon="chart_with_upward_trend")
 
 # some custom styling
@@ -26,8 +29,9 @@ st.markdown("""
 def load_data():
     """Load and prep data, mirroring the steps from analysis.py"""
 
-    sent = pd.read_csv("fear_greed_index.csv")
-    trades = pd.read_csv("historical_data.csv")
+    # Use absolute paths to ensure files are found regardless of CWD
+    sent = pd.read_csv(os.path.join(SCRIPT_DIR, "fear_greed_index.csv"))
+    trades = pd.read_csv(os.path.join(SCRIPT_DIR, "historical_data.csv"))
 
     sent["date"] = pd.to_datetime(sent["date"])
     sent.rename(columns={"value": "fgi_value", "classification": "sentiment"}, inplace=True)
@@ -258,7 +262,7 @@ with tab4:
         ("bonus_feature_importance.png", "Feature Importance"),
         ("bonus_clusters.png", "Trader Archetypes (K-Means)")
     ]:
-        path = f"output_charts/{fname}"
+        path = os.path.join(SCRIPT_DIR, "output_charts", fname)
         if os.path.exists(path):
             st.image(path, caption=caption)
         else:

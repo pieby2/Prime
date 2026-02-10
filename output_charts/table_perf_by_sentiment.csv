@@ -1,0 +1,4 @@
+sent_group,median_pnl,mean_pnl,avg_winrate,count
+Fear,825.8895,8151.8456,0.8673,520
+Greed,540.0591,2730.8616,0.8406,721
+Neutral,588.9302,4329.3864,0.8401,250
