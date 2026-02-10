@@ -1,0 +1,11 @@
+# Data files (too large for GitHub)
+*.csv
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# IDE
+.vscode/
+.idea/
